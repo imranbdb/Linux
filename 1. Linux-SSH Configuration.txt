@@ -1,0 +1,46 @@
+After install Linux
+
+1. SSH enable:  #sudo apt update
+		#sudo apt install openssh-server
+
+Verify that the service is running successfully, and enable service.
+		sudo systemctl status ssh
+		sudo systemctl enable --now ssh
+
+Configure custom SSH port
+		sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config_back
+		sudo vim /etc/ssh/sshd_config
+
+Connecting to the remote system from your local machine
+		ssh username@IPaddress 
+		ssh nasir@172.17.18.200
+
+		ssh username@IPaddress -p portnumber
+		ssh nasir@172.17.18.200 -p 22
+
+Enable,Disable or Status check
+		sudo systemctl status ssh
+		sudo systemctl stop ssh
+		sudo systemctl start ssh
+		sudo systemctl enable ssh
+		sudo systemctl disable ssh
+
+SSH keys based authentication configuration with Custom Host
+
+Generate SSH Key Pair
+		ssh-keygen
+Copy Public Key to Remote Host
+		ssh-copy-id username@hostname
+Test SSH Connection
+		ssh username@hostname
+Optional - Create SSH Config File
+		vim ~/.ssh/config
+
+		Host myhost
+ 		 HostName hostname/ip
+  		 User username
+  		 Port 5439
+  		 IdentityFile ~/.ssh/keyConnect Using SSH Config
+
+Connect Using SSH Config
+		ssh myhost
